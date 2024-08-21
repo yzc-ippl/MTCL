@@ -3,7 +3,7 @@ Multi-Level Transitional Contrast Learning for Personalized Image Aesthetics Ass
 __*Zhichao Yang, Leida Li, Yuzhe Yang, Yaqian Li, and Weisi Lin*__  
 PyTorch implementation for the [paper](https://ieeexplore.ieee.org/abstract/document/10168279)  
 
-Model weight：[model]([https://ieeexplore.ieee.org/abstract/document/10168279](https://pan.baidu.com/s/1wsb249NwjgaoPCBlHNRM1Q?pwd=0981 ))
+Model weight：[model](https://pan.baidu.com/s/1wsb249NwjgaoPCBlHNRM1Q?pwd=0981)
 
 If you find our work is useful, pleaes cite the paper:
 @ARTICLE{10168279,
