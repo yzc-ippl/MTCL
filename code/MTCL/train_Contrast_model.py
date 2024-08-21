@@ -221,7 +221,6 @@ def train_contrast():
             print(best_loss)
             best_model = copy.deepcopy(model.cuda())
             torch.save(best_model.cuda(), './model/Contrast.pt')
-    print(best_loss)
 
 
 if __name__ == '__main__':
