@@ -217,7 +217,7 @@ def load_data():
     data_train = DataLoader(transformed_dataset_train, batch_size=64,
                             shuffle=True, num_workers=8, collate_fn=my_collate, drop_last=False)
     data_valid = DataLoader(transformed_dataset_valid, batch_size=64,
-                            shuffle=True, num_workers=8, collate_fn=my_collate, drop_last=False)
+                            shuffle=False, num_workers=8, collate_fn=my_collate, drop_last=False)
 
     return data_train, data_valid
 
