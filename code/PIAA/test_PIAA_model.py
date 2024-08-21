@@ -356,17 +356,16 @@ def Flicker_test():
                                           shuffle=False, num_workers=0, collate_fn=my_collate)
 
 
-            GIAA_model = torch.load('./model/GIAA.pt')
-            Contrast_model = torch.load('./model/Contrast.pt')
+            giaa_model = torch.load('./model/GIAA.pt')
+            contrast_model = torch.load('./model/Contrast.pt')
 
-            PIAA_model = PIAA_model(Contrast_model, GIAA_model)
+            piaa_model = PIAA_model(contrast_model, giaa_model)
 
-            model_ft = PIAA_model
+            model_ft = piaa_model
             model_ft.cuda()
 
             criterion = nn.MSELoss()
             optimizer = optim.AdamW(model_ft.parameters(), lr=0.0001, weight_decay=5E-2)
-            # optimizer = optim.SGD(model_ft.parameters(), lr=0.001, weight_decay=5E-2)
             spearman = train_model(model_ft, criterion, optimizer, dataloader_train,
                                    dataloader_valid, num_epochs=epochs)
             srocc_list.append(spearman)
