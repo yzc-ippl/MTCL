@@ -21,8 +21,9 @@ import time
 from sklearn.model_selection import train_test_split
 import torch.optim as optim
 from torch.autograd import Variable
-from GIAA.train_GIAA_model import GIAA_model
-from MTCL.train_Contrast_model import Contrast_model
+from code.GIAA.train_GIAA_model import GIAA_model
+from torchvision import models
+from code.MTCL.train_Contrast_model import Contrast_model
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 warnings.filterwarnings("ignore")
@@ -355,13 +356,18 @@ def Flicker_test():
             dataloader_valid = DataLoader(transformed_dataset_valid, batch_size=250,
                                           shuffle=False, num_workers=0, collate_fn=my_collate)
 
+            backbone = models.resnet50(pretrained=True)
+            giaa_model = GIAA_model(backbone)
+            giaa_model.load_state_dict(
+                torch.load('../model/ResNet-50/ResNet50-FlickrAes-GIAA.pt')
+            )
+            contrast_model = Contrast_model(giaa_model.backbone)
+            contrast_model.load_state_dict(
+                torch.load('../model/ResNet-50/ResNet50-FlickrAes-Contrast.pt'))
 
-            giaa_model = torch.load('./model/GIAA.pt')
-            contrast_model = torch.load('./model/Contrast.pt')
+            PIAA_model = PIAA_model(contrast_model, giaa_model)
 
-            piaa_model = PIAA_model(contrast_model, giaa_model)
-
-            model_ft = piaa_model
+            model_ft = PIAA_model
             model_ft.cuda()
 
             criterion = nn.MSELoss()
