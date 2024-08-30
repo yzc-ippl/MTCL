@@ -44,6 +44,7 @@ class GIAA_model(nn.Module):
         return y
 
 
+
 class Rescale(object):
     """Rescale the image in a sample to a given size.
 
@@ -217,7 +218,7 @@ def load_data():
     data_train = DataLoader(transformed_dataset_train, batch_size=64,
                             shuffle=True, num_workers=8, collate_fn=my_collate, drop_last=False)
     data_valid = DataLoader(transformed_dataset_valid, batch_size=64,
-                            shuffle=False, num_workers=8, collate_fn=my_collate, drop_last=False)
+                            shuffle=True, num_workers=8, collate_fn=my_collate, drop_last=False)
 
     return data_train, data_valid
 
@@ -244,7 +245,7 @@ def train_GIAA():
     data_train, data_valid = load_data()
 
     # model
-    backbone = models.ResNet50(pretrained=True)
+    backbone = models.resnet50(pretrained=True)
     # backbone = models.resnext101_32x8d(pretrained=True)
     model = GIAA_model(backbone)
     model.cuda()
@@ -302,7 +303,7 @@ def train_GIAA():
                 if srcc > BestSRCC:
                     BestSRCC = srcc
                     best_model = copy.deepcopy(model)
-                    torch.save(best_model.cuda(), './model/GIAA.pt')
+                    torch.save(best_model.cuda(), '../model/ResNet-50/ResNet50-FlickrAes-GIAA.pt')
 
 
 if __name__ == '__main__':
