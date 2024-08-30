@@ -3,6 +3,7 @@
 @DESCRIPTION: Train Contrast model
 @AUTHOR: yzc-ippl
 """
+import sys
 import random
 import numpy as np
 import pandas as pd
@@ -17,8 +18,9 @@ from torch import nn, optim
 from tqdm import tqdm
 import copy
 from torch.utils.data.dataloader import default_collate
+from code.GIAA.train_GIAA_model import GIAA_model
+from torchvision import models
 
-from GIAA.train_GIAA_model import GIAA_model
 
 warnings.filterwarnings("ignore")
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -46,7 +48,7 @@ class FlickrDataset_MTCL(Dataset):
                   'label': torch.from_numpy(np.float64([label])).double()}
         return sample
 
-    
+
 def my_collate(batch):
     batch = list(filter(lambda x: x is not None, batch))
     return default_collate(batch)
@@ -90,7 +92,7 @@ class Contrast_Database:
             for key in user_data.keys():
                 contrast_data.append(user_data[key][i])
 
-        csv_save_path = os.path.join(self.save_dir, 'Contrast' + str(batch_idx) + '.csv' )
+        csv_save_path = os.path.join(self.save_dir, 'Contrast' + str(batch_idx) + '.csv')
         pd.DataFrame(contrast_data).to_csv(csv_save_path, sep=',', index=False)
 
         return 0
@@ -104,30 +106,30 @@ class Contrast_Database:
         return 0
 
     def read_contrast_data(self, batch_idx=0):
-        csv_name = os.path.join(self.save_dir, 'Contrast' + str(batch_idx) + '.csv' )
+        csv_name = os.path.join(self.save_dir, 'Contrast' + str(batch_idx) + '.csv')
         data_image_dir = os.path.join(r'./FlickrAES_Image')
         transformed_dataset_train = FlickrDataset_MTCL(
             csv_file=csv_name,
             root_dir=data_image_dir,
             transform=transforms.Compose(
-            [
-                transforms.Resize((256, 256)),
-                transforms.RandomCrop((224, 224)),
-                transforms.ToTensor(),
-                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
-                                     ),
-            ]
+                [
+                    transforms.Resize((256, 256)),
+                    transforms.RandomCrop((224, 224)),
+                    transforms.ToTensor(),
+                    transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
+                                         ),
+                ]
             )
         )
         data_train = DataLoader(transformed_dataset_train, batch_size=208,
-                            shuffle=False, num_workers=3, collate_fn=my_collate, drop_last=False)
+                                shuffle=False, num_workers=3, collate_fn=my_collate, drop_last=False)
 
         return data_train
 
 
-class contrast_model(nn.Module):
+class Contrast_model(nn.Module):
     def __init__(self, encoder, in_dim=2048, hidden_dim=2048, out_dim=2048):
-        super(contrast_model, self).__init__()
+        super(Contrast_model, self).__init__()
 
         self.encoder = encoder
         self.predictor = nn.Sequential(nn.Linear(in_dim, hidden_dim),
@@ -174,8 +176,12 @@ def train_contrast():
     T = 0.07
 
     # model
-    base = torch.load('./model/GIAA.pt')
-    model = contrast_model(base.backbone)
+    backbone = models.resnet50(pretrained=True)
+    giaa_model = GIAA_model(backbone)
+    giaa_model.load_state_dict(
+        torch.load('../model/ResNet-50/ResNet50-FlickrAes-GIAA.pt')
+    )
+    model = Contrast_model(giaa_model.backbone)
     model.cuda()
 
     # optimizer
@@ -220,7 +226,7 @@ def train_contrast():
             best_loss = epoch_loss
             print(best_loss)
             best_model = copy.deepcopy(model.cuda())
-            torch.save(best_model.cuda(), './model/Contrast.pt')
+            torch.save(best_model.cuda(), '../model/ResNet-50/ResNet50-FlickrAes-Contrast.pt')
 
 
 if __name__ == '__main__':
