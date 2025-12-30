@@ -358,16 +358,12 @@ def Flicker_test():
 
             backbone = models.resnet50(pretrained=True)
             giaa_model = GIAA_model(backbone)
-            giaa_model.load_state_dict(
-                torch.load('../model/ResNet-50/ResNet50-FlickrAes-GIAA.pt')
-            )
             contrast_model = Contrast_model(giaa_model.backbone)
-            contrast_model.load_state_dict(
-                torch.load('../model/ResNet-50/ResNet50-FlickrAes-Contrast.pt'))
+            piaa_model = PIAA_model(contrast_model, giaa_model)
+            piaa_model.load_state_dict(
+                torch.load('../model/ResNet50-FlickrAes-PIAA.pt'))
 
-            PIAA_model = PIAA_model(contrast_model, giaa_model)
-
-            model_ft = PIAA_model
+            model_ft = piaa_model_model
             model_ft.cuda()
 
             criterion = nn.MSELoss()
@@ -384,3 +380,4 @@ def Flicker_test():
 
 if __name__ == '__main__':
     Flicker_test()
+
