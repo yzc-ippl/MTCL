@@ -363,7 +363,7 @@ def Flicker_test():
             piaa_model.load_state_dict(
                 torch.load('../model/ResNet50-FlickrAes-PIAA.pt'))
 
-            model_ft = piaa_model_model
+            model_ft = piaa_model
             model_ft.cuda()
 
             criterion = nn.MSELoss()
@@ -380,4 +380,5 @@ def Flicker_test():
 
 if __name__ == '__main__':
     Flicker_test()
+
 
