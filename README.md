@@ -56,7 +56,7 @@ project_root/
 │   │   └── FlickrAES_TrainUser       # Train user of FlickrAES
 │   │   └── train_Contrast_model.py   # Contrast model definition
 │   └── PIAA/
-│       └── ├── FlickerAes_PIAA/
+│       └── ├── FlickrAES_PIAA/
             │       └── image/        # Flickr-AES images
             │       └── label/
             │           ├── test_worker.csv                   # Test Worker information
