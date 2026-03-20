@@ -26,7 +26,7 @@
 
 
 
-## Code and Model： 
+## Introduction： 
 ### PyTorch implementation for the [paper](https://ieeexplore.ieee.org/abstract/document/10168279)  
 
 ### Model weight：[model](https://pan.baidu.com/s/1wsb249NwjgaoPCBlHNRM1Q?pwd=0981)
@@ -63,7 +63,7 @@ project_root/
             └── test_PIAA.py          # This inference script
 ```
 
-### 4. Download Required Files
+### 4. Download Model Weight
 Pre-trained PIAA Model: Place at 
 ```
 ./model/ResNet50/ResNet50-FlickrAes-PIAA.pt
