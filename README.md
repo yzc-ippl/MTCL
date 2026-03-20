@@ -25,21 +25,24 @@ project_root/
 ├── code/
 │   ├── GIAA/
 │   │   └── train_GIAA_model.py       # GIAA model definition
-│   └── MTCL/
-│       └── train_Contrast_model.py   # Contrast model definition
-├── model/
-│   └── ResNet50-FlickrAes-PIAA.pt    # Pre-trained PIAA model
-├── FlickerAes_PIAA/
-│   ├── image/                         # Flickr-AES images
-│   └── label/
-│       ├── test_worker.csv            # Test Worker information
-│       └── image_labeled_by_each_worker.csv  # Image ratings by workers
-└── test_PIAA.py                       # This inference script
+│   ├── MTCL/
+│   │   └── train_Contrast_model.py   # Contrast model definition
+│   └── PIAA/
+│       └── ├── FlickerAes_PIAA/
+            │       └── image/        # Flickr-AES images
+            │       └── label/
+            │           ├── test_worker.csv                   # Test Worker information
+            │           └── image_labeled_by_each_worker.csv  # Image ratings by workers
+
+            └── test_PIAA.py          # This inference script
 ```
 
 ### 4. Download Required Files
-Pre-trained PIAA Model: Place at ./model/ResNet50-FlickrAes-PIAA.pt
-
+Pre-trained PIAA Model: Place at 
+```
+./model/ResNet50/ResNet50-FlickrAes-PIAA.pt
+./model/ResNext101/ResNext101-FlickrAes-PIAA.pt
+```
 Flickr-AES Dataset:  
 ```
 Images: ./FlickerAes_PIAA/image/
