@@ -56,15 +56,14 @@ python test_PIAA.py
 
 ## Citation
 If you find our work is useful, pleaes cite the paper: 
-```
-@ARTICLE{10168279,  
-  author={Yang, Zhichao and Li, Leida and Yang, Yuzhe and Li, Yaqian and Lin, Weisi},  
-  journal={IEEE Transactions on Multimedia},   
-  title={Multi-Level Transitional Contrast Learning for Personalized Image Aesthetics Assessment},   
-  year={2024},  
-  volume={26},  
-  number={},  
-  pages={1944-1956},  
-  keywords={Task analysis;Feature extraction;Databases;Standards;Electronic mail;Videos;Training;Personalized image aesthetics assessment;contrast learning;aesthetic preferences},  
+```bibtex
+@article{yang2023multi,
+  title={Multi-level transitional contrast learning for personalized image aesthetics assessment},
+  author={Yang, Zhichao and Li, Leida and Yang, Yuzhe and Li, Yaqian and Lin, Weisi},
+  journal={IEEE Transactions on Multimedia},
+  volume={26},
+  pages={1944--1956},
+  year={2023},
+  publisher={IEEE}
 }
 ```
