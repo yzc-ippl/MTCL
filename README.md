@@ -60,7 +60,7 @@ project_root/
             │           ├── test_worker.csv                   # Test Worker information
             │           └── image_labeled_by_each_worker.csv  # Image ratings by workers
 
-            └── test_PIAA.py          # This inference script
+            └── test_PIAA_model.py          # This inference script
 ```
 
 ### 4. Download Model Weight
@@ -77,7 +77,7 @@ Labels: ./FlickerAes_PIAA/label/
 
 ### 5. Running Inference
 ```
-python test_PIAA.py
+python test_PIAA_model.py
 ```
 
 ## Citation
