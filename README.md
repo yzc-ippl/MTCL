@@ -52,6 +52,8 @@ project_root/
 │   ├── GIAA/
 │   │   └── train_GIAA_model.py       # GIAA model definition
 │   ├── MTCL/
+│   │   └── Contrast_Database         # Contrast data for training
+│   │   └── FlickrAES_TrainUser       # Train user of FlickrAES
 │   │   └── train_Contrast_model.py   # Contrast model definition
 │   └── PIAA/
 │       └── ├── FlickerAes_PIAA/
