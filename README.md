@@ -29,7 +29,7 @@
 ## Introduction： 
 ### PyTorch implementation for the [paper](https://ieeexplore.ieee.org/abstract/document/10168279)  
 
-### Model weight：[model](https://pan.baidu.com/s/1wsb249NwjgaoPCBlHNRM1Q?pwd=0981)
+### Model weight：[./model](https://pan.baidu.com/s/1wsb249NwjgaoPCBlHNRM1Q?pwd=0981)
 
 ## Inference Guide：
 
