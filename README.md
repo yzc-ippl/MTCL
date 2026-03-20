@@ -5,7 +5,7 @@
     <a href="https://web.xidian.edu.cn/ldli/" target="_blank">Leida Li</a><sup>1*</sup>,
     <a href="#" target="_blank">Yuzhe Yang</a><sup>2</sup>,
     <a href="#" target="_blank">Yaqian Li</a><sup>2</sup>,
-    <a href="#" target="_blank">Weisi Lin Li</a><sup>3</sup>,
+    <a href="#" target="_blank">Weisi Lin</a><sup>3</sup>,
 </div>
 
 <div align="center">
